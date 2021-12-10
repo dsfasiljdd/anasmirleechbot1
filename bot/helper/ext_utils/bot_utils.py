@@ -136,7 +136,7 @@ def get_readable_message():
                     msg += f"\n<b>Uploaded 📤 : </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 else:
                     msg += f"\n<b>Downloaded 📥:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Speed ⚡ : </b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+                msg += f"\n<b>Speed ⚡ : </b> {download.speed()} | <b>ETA ⏰ :</b> {download.eta()}"
                 try:
                     msg += f"\n<b>Seeders : </b> {download.aria_download().num_seeders}" \
                            f" | <b>Peers : </b> {download.aria_download().connections}"
@@ -156,7 +156,7 @@ def get_readable_message():
         total, used, free = shutil.disk_usage('.')
         free = get_readable_file_size(free)
         currentTime = get_readable_time(time.time() - botStartTime)
-        bmsg = f"<b>CPU 💻 :</b> {psutil.cpu_percent()}% | <b>FREE 💾 :</b> {free}"
+        bmsg = f"<b>CPU 💻 :</b> {psutil.cpu_percent()}% || <b>FREE 💾 :</b> {free}"
         for download in list(download_dict.values()):
             speedy = download.speed()
             if download.status() == MirrorStatus.STATUS_DOWNLOADING:
@@ -171,10 +171,10 @@ def get_readable_message():
                     uldl_bytes += float(speedy.split('M')[0]) * 1048576
         dlspeed = get_readable_file_size(dlspeed_bytes)
         ulspeed = get_readable_file_size(uldl_bytes)
-        bmsg += f"\n<b>RAM 🕹️ :</b> {psutil.virtual_memory().percent}% | <b>UPTIME 🕒 :</b> {currentTime}" \
-                f"\n<b>DL 🔽 :</b> {dlspeed}/s | <b>UL 🔼 :</b> {ulspeed}/s"
+        bmsg += f"\n<b>RAM 🕹️ :</b> {psutil.virtual_memory().percent}% || <b>UPTIME 🕒 :</b> {currentTime}" \
+                f"\n<b>DL 🔽 :</b> {dlspeed}/s || <b>UL 🔼 :</b> {ulspeed}/s"
         if STATUS_LIMIT is not None and dick_no > STATUS_LIMIT:
-            msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {dick_no}\n"
+            msg += f"<b>Page:</b> {PAGE_NO}/{pages} || <b>Tasks:</b> {dick_no}\n"
             buttons = button_build.ButtonMaker()
             buttons.sbutton("Previous", "pre")
             buttons.sbutton("Next", "nex")
